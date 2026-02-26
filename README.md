@@ -115,6 +115,23 @@ docker-compose up -d
 
 ## 🤝 配套项目
 
+**Token Monitor** 是 [OpenCode Smart Model Selector](https://github.com/wuleiyuan/opencode-smart-model-selector) 的配套监控系统。
+
+### 配合使用架构
+
+```
+用户请求 → op 命令 → Smart Model Selector (选择模型) 
+                              ↓
+                        API 调用 → 消耗 Token
+                              ↓
+                        Token Monitor (监控消耗)
+```
+
+| 项目 | GitHub | 说明 |
+|------|--------|------|
+| 🧠 **Smart Model Selector** | [wuleiyuan/opencode-smart-model-selector](https://github.com/wuleiyuan/opencode-smart-model-selector) | 智能模型调度，自动选择最优 AI 模型 |
+| 🔐 **Token Monitor** | [wuleiyuan/token-monitor](https://github.com/wuleiyuan/token-monitor) | Token 消耗监控，实时追踪使用量 |
+
 - [OpenCode Smart Model Selector](https://github.com/wuleiyuan/opencode-smart-model-selector) - 智能模型调度系统
 
 ## 📄 许可证
