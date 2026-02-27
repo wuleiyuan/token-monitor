@@ -1,33 +1,37 @@
+# Workflow to publish to PyPI when a new tag is pushed
 name: Release
 
 on:
+  push:
+    branches: [main]
+    tags:
+      - 'v*'
   push:
     tags:
       - 'v*'
 
 permissions:
-  contents: write
+  contents: read
+  id-token: write  # Required for OIDC trusted publishing
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install build twine
+          pip install build
 
       - name: Build package
         run: python -m build
 
       - name: Publish to PyPI
-        env:
-          PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
-        run: twine upload dist/*
+        uses: pypa/gh-action-pypi-publish@release/v1
