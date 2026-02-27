@@ -42,3 +42,8 @@ Thumbs.db
 dist/
 build/
 *.egg-info/
+
+
+# Memory file
+.dev_workflow.md
+.workflow记忆.md
